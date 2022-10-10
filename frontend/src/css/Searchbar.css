@@ -1,0 +1,26 @@
+.searchbar-container {
+    width: 50%;
+    height: 50px;
+    
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 10px;
+    background-color: rgb(250, 250, 250);
+}
+
+.search-input {
+    border: none;
+    margin-left: 5px;
+    outline:none;
+    width: 60%;
+}
+
+.search-input:active {
+    border: none;
+    outline: none;
+}

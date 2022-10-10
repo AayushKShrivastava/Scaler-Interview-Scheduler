@@ -1,0 +1,23 @@
+.container {
+    background-color: rgb(227, 242, 253);
+    height: 90vh;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 30px;
+}
+
+h4 {
+    align-self: flex-start;
+}
