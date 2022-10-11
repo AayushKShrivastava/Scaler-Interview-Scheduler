@@ -2,7 +2,6 @@
     width: 100%;
 }
 
-
 th {
     color: rgb(97, 97, 97);
     text-align: left;
@@ -13,6 +12,12 @@ th {
 
 td {
     padding: 20px 0;
+}
+
+.interviews-rows:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
 }
 
 .date .participants{
