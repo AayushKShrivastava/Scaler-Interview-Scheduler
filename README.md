@@ -11,9 +11,6 @@ Scheduler application to help organizations SCHEDULE, UPDATE, CANCEL, and VIEW S
 - Run: npm install
 - Run: npm start to start the react app
 
-## Working
-
-
 ## Technology Used
 - Node.js
 - Express.js

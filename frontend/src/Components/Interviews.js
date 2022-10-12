@@ -38,13 +38,15 @@ function Interviews({search}) {
     return (
         <div className='interviews'>
             <table className='interviews-table'>
-                <tr className='table-header'>
-                    <th className='date'>Date</th>
-                    <th className='title'>Title</th>
-                    <th className='start-time'>Start Time</th>
-                    <th className='end-time'>End Time</th>
-                    <th className='partcipants'>Participants</th>
-                </tr>
+                <thead>
+                    <tr className='table-header'>
+                        <th className='date'>Date</th>
+                        <th className='title'>Title</th>
+                        <th className='start-time'>Start Time</th>
+                        <th className='end-time'>End Time</th>
+                        <th className='partcipants'>Participants</th>
+                    </tr>
+                </thead>
                 
                 {scheduledInterviews.map((interview) => {
                     //console.log(interview)
