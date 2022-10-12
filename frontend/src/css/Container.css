@@ -1,6 +1,7 @@
 .container {
     background-color: rgb(227, 242, 253);
-    height: 90vh;
+    min-height: 90vh;
+    height: fit-content;
     padding: 30px;
     display: flex;
     justify-content: center;

@@ -5,10 +5,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    height: 500px;
+    height: fit-content;
     background-color: white;
     color: black;
+    min-height: 500px;
     padding: 30px 30px;
+    padding-bottom: 40px;
 }
 
 .close-btn {
@@ -64,8 +66,13 @@
   color: rgb(97, 97, 97);
 }
 
+.alert
+{
+  font-weight: bold;
+  color: red;
+}
+
 .scheduling-actions {
-  margin-bottom: -20px;
   display: flex;
   justify-content: flex-end;
   gap: 30px;
