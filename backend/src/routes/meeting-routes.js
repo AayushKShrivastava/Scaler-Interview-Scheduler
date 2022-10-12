@@ -15,5 +15,6 @@ router.get("/details",getMeetingDetails, meetingController);
 router.post("/create",createMeeting, emailParticipants, meetingController);
 router.post("/update",updateMeeting,emailParticipants,meetingController);
 router.post("/delete", fetchMeetingDetails,cancelMeeting, emailParticipants, meetingController);
+router.post("/test",emailParticipants);
 
 module.exports = router;

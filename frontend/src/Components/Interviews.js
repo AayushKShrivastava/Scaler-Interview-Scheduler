@@ -9,7 +9,7 @@ function Interviews({search}) {
 
     const [displayDetailsPage, setDisplayDetailsPage] = useState(false)
     const [scheduledInterviews, setScheduledInterviews] = useState([])
-
+    const [interviewsToDisplay, setInterviewsToDisplay] = useState([]);
     const [detailsToDisplay, setDetailsToDisplay] = useState([]);
 
     const handleClick = (id) => {
