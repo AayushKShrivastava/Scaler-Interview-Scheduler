@@ -1,5 +1,5 @@
 # Scaler Interview Scheduler
-Scheduler application to help organizations SCHEDULE, UPDATE, CANCEL, and VIEW SCHEDULED MEETINGS
+Scheduler application to help organizations SCHEDULE, UPDATE, CANCEL, and VIEW SCHEDULED MEETINGS, with Email notification feature
 
 ## Local Setup Instructions
 - Open your terminal and then type: $ git clone git@github.com:AayushKShrivastava/Scaler-Interview-Scheduler.git to clones the repository
