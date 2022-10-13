@@ -174,7 +174,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
             <br/>
             <div className='scheduling-actions'>
                 <button className='cancel' onClick={handleClose}>Cancel</button>
-                <button className='submit' onClick={handleSubmit}>Submit</button>
+                <button className='submit' onClick={handleSubmit}>{submitType === 'Create' ? "Submit" : "Update"}</button>
             </div>
         </div>
     </div>
