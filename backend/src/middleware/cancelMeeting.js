@@ -3,7 +3,7 @@ const constants = require('../constants/constants')
 const MeetingDetails = require('../db/schema/MeetingDetails')
 
 const cancelMeeting = async(req, res, next) => {
-
+    
     if(req.ok)
     {
         try
@@ -18,7 +18,6 @@ const cancelMeeting = async(req, res, next) => {
 
             var deleteResult = await MeetingDetails.deleteOne({_id : meeting_id});
 
-            console.log(deleteResult);
             req.deleteData = deleteResult
 
             next();

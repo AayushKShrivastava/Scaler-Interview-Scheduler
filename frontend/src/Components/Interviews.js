@@ -26,7 +26,7 @@ function Interviews({search}) {
     useEffect(()=>{
         async function fetchData() {
           var interviewData = await API.get(constants.MEETING_DETAILS_URL)
-          //console.log(interviewData.all_meeting_details)
+          console.log(interviewData.all_meeting_details)
           setScheduledInterviews(interviewData.all_meeting_details)
         }
         fetchData();

@@ -9,7 +9,7 @@ const fetchMeetingDetails = async(req, res, next) => {
     req.opcode = constants.opcode.DELETE_MEETING
 
     var meeting_id = req.body.meetingId
-
+    
     try
     {
         //Connect to the Database

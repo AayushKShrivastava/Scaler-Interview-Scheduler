@@ -5,15 +5,20 @@ import SchedulerForm from './SchedulerForm';
 import { constants } from '../constants/constants';
 
 function InterviewDetails({details, closeDetails}) {
-
     const [editWindow, setEditWindow] = useState(false);
 
     const handleCancelMeeting = async() => {
-        var meeting_id = details._id
+        var requestBody  = {
+            meetingId: details._id,
+            title: details.title,
+            date: details.date,
+            start_time: details.start_time,
+            end_time: details.end_time,
+            participants: details.participants
+        }
 
-        var response = await API.post(constants.CANCEL_MEETING_URL, {meetingId : meeting_id})
+        var response = await API.post(constants.CANCEL_MEETING_URL, requestBody)
 
-        console.log(response)
         if(response.status==="SUCCESS")
             window.location.reload()
     }

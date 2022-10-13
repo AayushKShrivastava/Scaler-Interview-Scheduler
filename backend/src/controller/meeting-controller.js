@@ -68,6 +68,7 @@ const meetingController = (req, res) => {
                 },
                 message : constants.message.MEETING_CANCELLED
             }
+            
 
             res.status(200).json(responseData);
         }
@@ -95,6 +96,7 @@ const meetingController = (req, res) => {
         }
         if(req.error.code === constants.INVALID_REQUEST.Code)
         {
+            console.log(responseData)
             res.status(400).json(responseData);   
         }
         else
