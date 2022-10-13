@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../css/SchedulerForm.css'
 import Multiselect from 'multiselect-react-dropdown';
 import DatePicker from 'react-date-picker';
@@ -47,7 +47,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
       {
         setAlertMessage(' ')
         
-        var requestBody = {
+        let requestBody = {
             title : title,
             date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
             start_time : startTime,
@@ -62,7 +62,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
     {
       setAlertMessage(' ')
       console.log('Updating...')
-      var requestBody = {
+      let requestBody = {
         meetingId : interviewDetails._id,
         title : title,
         date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,

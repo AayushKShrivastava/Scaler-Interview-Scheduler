@@ -11,7 +11,7 @@ function Container() {
   const [interviewsToDisplay, setInterviewsToDisplay] = useState(scheduledInterviews);
 
   const handleSearch = (newSearchQuery) => {
-    if(newSearchQuery == '') {
+    if(newSearchQuery === '') {
       setInterviewsToDisplay(scheduledInterviews)
       return;
     }
@@ -29,6 +29,7 @@ function Container() {
     async function fetchData() {
       var interviewData = await API.get(constants.MEETING_DETAILS_URL)
       //console.log(interviewData.all_meeting_details)
+      console.log(interviewData.all_meeting_details)
       setScheduledInterviews(interviewData.all_meeting_details)
       setInterviewsToDisplay(interviewData.all_meeting_details)
     }

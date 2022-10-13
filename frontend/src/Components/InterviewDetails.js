@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import API from '../api/api';
 import '../css/InterviewDetails.css'
 import SchedulerForm from './SchedulerForm';

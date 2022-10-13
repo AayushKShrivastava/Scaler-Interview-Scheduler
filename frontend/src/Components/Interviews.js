@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import API from '../api/api';
-import { constants } from '../constants/constants';
+import React, { useState } from 'react'
 import '../css/Interviews.css'
 import InterviewDetails from './InterviewDetails';
 import Overlay from './Overlay';

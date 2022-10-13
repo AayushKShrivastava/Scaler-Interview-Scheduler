@@ -92,4 +92,4 @@ class API
     // }
 }
 
-module.exports = API
+export default API
