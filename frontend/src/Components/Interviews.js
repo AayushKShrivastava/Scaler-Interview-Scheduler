@@ -5,16 +5,14 @@ import '../css/Interviews.css'
 import InterviewDetails from './InterviewDetails';
 import Overlay from './Overlay';
 
-function Interviews({search}) {
+function Interviews({interviewsToDisplay}) {
 
     const [displayDetailsPage, setDisplayDetailsPage] = useState(false)
-    const [scheduledInterviews, setScheduledInterviews] = useState([])
-    const [interviewsToDisplay, setInterviewsToDisplay] = useState([]);
     const [detailsToDisplay, setDetailsToDisplay] = useState([]);
 
     const handleClick = (id) => {
         
-        scheduledInterviews.forEach((interview) => {
+        interviewsToDisplay.forEach((interview) => {
             if(id === interview._id) {
                 setDetailsToDisplay(interview)
                 setDisplayDetailsPage(true)
@@ -23,15 +21,7 @@ function Interviews({search}) {
         })
     }
 
-    useEffect(()=>{
-        async function fetchData() {
-          var interviewData = await API.get(constants.MEETING_DETAILS_URL)
-          console.log(interviewData.all_meeting_details)
-          setScheduledInterviews(interviewData.all_meeting_details)
-        }
-        fetchData();
-
-      }, [])
+    
 
       //console.log(scheduledInterviews)
 
@@ -48,7 +38,7 @@ function Interviews({search}) {
                     </tr>
                 </thead>
                 
-                {scheduledInterviews.map((interview) => {
+                {interviewsToDisplay.map((interview) => {
                     //console.log(interview)
                     return (
                         <tr className='interviews-rows' onClick={()=>handleClick(interview._id) } key={interview._id}>
