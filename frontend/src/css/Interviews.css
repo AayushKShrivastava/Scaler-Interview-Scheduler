@@ -17,6 +17,9 @@ td {
 .interviews-rows:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transform: scale(1.1);
+    transition-duration: 1s;
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
     
 }
 
