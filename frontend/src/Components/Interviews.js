@@ -23,11 +23,11 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
     const [displayDetailsPage, setDisplayDetailsPage] = useState(false)
     const [detailsToDisplay, setDetailsToDisplay] = useState([]);
     const [page, setPage] = useState(1);
-    const { interviewsToDisplaySlice, range } = useTable(interviewsToDisplay, page, rowsPerPage);
-
+    const { slice: interviewsSliceToDisplay, range } = useTable(interviewsToDisplay, page, rowsPerPage);
+    
     const handleClick = (id) => {
         
-        interviewsToDisplaySlice.forEach((interview) => {
+        interviewsSliceToDisplay.forEach((interview) => {
             if(id === interview._id) {
                 setDetailsToDisplay(interview)
                 setDisplayDetailsPage(true)
@@ -49,7 +49,7 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
                     </tr>
                 </thead>
                 
-                {interviewsToDisplaySlice.map((interview) => {
+                {interviewsSliceToDisplay.map((interview) => {
                     //console.log(interview)
                     return (
                         <tr className='interviews-rows' onClick={()=>handleClick(interview._id) } key={interview._id}>
@@ -62,7 +62,7 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
                     )
                 })}
             </table>
-            <TableFooter range={range} slice={interviewsToDisplaySlice} setPage={setPage} page={page} />
+            <TableFooter range={range} slice={interviewsSliceToDisplay} setPage={setPage} page={page} />
             <LoadingIndicator />
             {/* <TablePagination /> */}
             {displayDetailsPage && [<Overlay />,<InterviewDetails details={detailsToDisplay} closeDetails={()=>setDisplayDetailsPage(false)}/>]}
