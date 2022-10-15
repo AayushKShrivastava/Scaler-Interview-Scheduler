@@ -7,6 +7,17 @@
     justify-content: center;
 }
 
+/* .date-picker {
+    z-index: index;
+} */
+
+.head-n-date {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
 .content {
     width: 80%;
     height: 80%;
@@ -19,6 +30,6 @@
     gap: 30px;
 }
 
-h4 {
+/* h4 {
     align-self: flex-start;
-}
+} */

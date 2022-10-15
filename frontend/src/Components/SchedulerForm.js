@@ -8,7 +8,6 @@ import { constants } from '../constants/constants';
 
 function SchedulerForm({interviewDetails, toggle, participantEmailList, submitType}) {
 
-  const [participants, setParticipants] = useState(participantEmailList)
   const [alertMessage, setAlertMessage] = useState(' ')
   const [availableTimeSlots, setAvailableTimeSlots] = useState([])
   const [title, setTitle] = useState(interviewDetails ? interviewDetails.title : '')
@@ -39,14 +38,19 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
   const handleSubmit = async() => {
     if(submitType === "Create")
     {
-      console.log("Submitting...")
-      if(title.trim()==='' || selectdPartcipants.length===0 || availableTimeSlots.length===0 || startTime<minTime 
-        || endTime>maxTime || startTime>endTime || startTime==='' || endTime==='')
-        setAlertMessage("Please fill in all the details")
+      
+      if(title.trim()==='' || selectdPartcipants.length<2 || availableTimeSlots.length===0 || startTime<minTime 
+        || endTime>maxTime || startTime>endTime || startTime==='' || endTime==='') {
+          if(selectdPartcipants.length<2)
+            setAlertMessage("Select atleast two participants")
+          else
+            setAlertMessage("Please fill in all the details")
+        }
+        
       else
       {
         setAlertMessage(' ')
-        
+        console.log("Submitting...")
         let requestBody = {
             title : title,
             date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
@@ -60,18 +64,28 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
     }
     else if(submitType==="Update")
     {
-      setAlertMessage(' ')
-      console.log('Updating...')
-      let requestBody = {
-        meetingId : interviewDetails._id,
-        title : title,
-        date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
-        start_time : startTime,
-        end_time : endTime,
-        participants : selectdPartcipants
+      if(title.trim()==='' || selectdPartcipants.length<2 || availableTimeSlots.length===0 || startTime<minTime 
+        || endTime>maxTime || startTime>endTime || startTime==='' || endTime==='') {
+          if(selectdPartcipants.length<2)
+            setAlertMessage("Select atleast two participants")
+          else
+            setAlertMessage("Please fill in all the details correctly")
       }
-
-      var response = await API.post(constants.EDIT_MEETING_URL, requestBody)
+      else {
+          setAlertMessage(' ')
+          console.log('Updating...')
+          let requestBody = {
+            meetingId : interviewDetails._id,
+            title : title,
+            date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
+            start_time : startTime,
+            end_time : endTime,
+            participants : selectdPartcipants
+          }
+    
+          var response = await API.post(constants.EDIT_MEETING_URL, requestBody)
+      }
+      
     }
     console.log(response)
 
@@ -119,13 +133,13 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
                 onSelect={updateParticipantsList}
                 selectedValues={interviewDetails && interviewDetails.participants}
                 placeholder = 'Add Participants'
-                options={participants}
+                options={participantEmailList}
                 showCheckbox
                 className='select-participants-list'
             />
             <div className='interview-date'>
                 <label className='interview-date-label'>Date:</label>
-                <DatePicker onChange={setDate} value={date} format="dd-MM-yyyy"/>
+                <DatePicker onChange={setDate} value={date} format="dd/MM/yyyy" minDate={new Date()}/>
             </div>
 
             <div onMouseEnter={()=>handleMouseEnter()} onMouseLeave={()=>console.log("Focus Lost")}>
@@ -153,7 +167,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
                       minutePlaceholder="mm" 
                       locale='hu-HU'
                       // format='HH:mm'
-                      minTime={minTime} maxTime={maxTime}
+                      minTime={availableTimeSlots ? minTime : new Date().getTime} maxTime={maxTime}
                     />
               </div>
               <div className='interview-end-time'>

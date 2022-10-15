@@ -4,18 +4,17 @@ import Interviews from './Interviews'
 import Searchbar from './Searchbar'
 import API from '../api/api'
 import { constants } from '../constants/constants'
+import { trackPromise } from 'react-promise-tracker';
+import DatePicker from 'react-date-picker';
 
 function Container() {
 
   const [scheduledInterviews, setScheduledInterviews] = useState([])
   const [interviewsToDisplay, setInterviewsToDisplay] = useState(scheduledInterviews);
+  const [date, setDate] = useState('');
 
   const handleSearch = (newSearchQuery) => {
-    if(newSearchQuery === '') {
-      setInterviewsToDisplay(scheduledInterviews)
-      return;
-    }
-  
+    
     var interviewDetails = []
     scheduledInterviews.map((interview) => {
       if(interview.title.toLowerCase().includes(newSearchQuery)){
@@ -25,6 +24,23 @@ function Container() {
     setInterviewsToDisplay(interviewDetails)
   }
 
+  useEffect(()=> {
+    console.log(date)
+    if(date === null || date ===  '' || date === undefined) {
+      setInterviewsToDisplay(scheduledInterviews)
+      return;
+    }
+    const dateFilter = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
+    var interviewDetails = []
+    scheduledInterviews.map((interview) => {
+      if(interview.date === dateFilter){
+        interviewDetails.push(interview)
+      }
+    })
+    setInterviewsToDisplay(interviewDetails)
+  }, [date])
+
+ 
   useEffect(()=>{
     async function fetchData() {
       var interviewData = await API.get(constants.MEETING_DETAILS_URL)
@@ -33,7 +49,7 @@ function Container() {
       setScheduledInterviews(interviewData.all_meeting_details)
       setInterviewsToDisplay(interviewData.all_meeting_details)
     }
-    fetchData();
+    trackPromise(fetchData());
 
   }, [])
 
@@ -41,8 +57,12 @@ function Container() {
     <div className='container'>
         <div className='content'>
             <Searchbar handleSearch={handleSearch}/>
-            <h4>Scheduled Interviews</h4>
-            <Interviews interviewsToDisplay={interviewsToDisplay}/>
+            <div className='head-n-date'>
+                <h4>Scheduled Interviews</h4>
+                <DatePicker onChange={setDate} format="dd/MM/yyyy" value={date} />
+            </div>
+            <Interviews interviewsToDisplay={interviewsToDisplay} rowsPerPage={5}/>
+            
         </div>
     </div>
   )

@@ -6,6 +6,23 @@ import { constants } from '../constants/constants';
 
 function InterviewDetails({details, closeDetails}) {
     const [editWindow, setEditWindow] = useState(false);
+    const [participantEmails, setParticipantEmails] = useState([]);
+
+    async function handleEditButtonClick()
+    {
+        setEditWindow(true)
+        var participantList = await API.get(constants.LIST_PARTICIPANTS_URL)
+        console.log("Users", participantList.Users)
+
+        var emails = []
+
+        participantList.Users.forEach(participantData => {
+            emails.push(participantData._id)
+        });
+
+        setParticipantEmails(emails)
+        //setDisplayScheduler(true)
+    }
 
     const handleCancelMeeting = async() => {
         var requestBody  = {
@@ -51,10 +68,10 @@ function InterviewDetails({details, closeDetails}) {
 
             <div className='interview-edit'>
                 <button className='cancel-meeting-btn' onClick={handleCancelMeeting}>Cancel Meeting</button>
-                <button className='interview-edit-btn' onClick={()=>setEditWindow(true)}>Edit</button>
+                <button className='interview-edit-btn' onClick={handleEditButtonClick}>Edit</button>
             </div>
 
-            {editWindow && <SchedulerForm interviewDetails={details} toggle={()=>setEditWindow(false)} submitType='Update'/>}
+            {editWindow && <SchedulerForm interviewDetails={details} participantEmailList={participantEmails} toggle={()=>setEditWindow(false)} submitType='Update'/>}
 
         </div>
 

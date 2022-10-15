@@ -2,15 +2,32 @@ import React, { useState } from 'react'
 import '../css/Interviews.css'
 import InterviewDetails from './InterviewDetails';
 import Overlay from './Overlay';
+import { usePromiseTracker } from "react-promise-tracker";
+import {ThreeDots} from 'react-loader-spinner';
+import TableFooter from './TableFooter';
+import useTable from '../hooks/useTable'
 
-function Interviews({interviewsToDisplay}) {
+const LoadingIndicator = props => {
+    const { promiseInProgress } = usePromiseTracker();
+
+    return (
+        promiseInProgress && 
+        <div className='loader'>
+            <ThreeDots color="#2BAD60" height="100" width="100" />
+        </div>
+    );  
+}
+
+function Interviews({interviewsToDisplay, rowsPerPage}) {
 
     const [displayDetailsPage, setDisplayDetailsPage] = useState(false)
     const [detailsToDisplay, setDetailsToDisplay] = useState([]);
+    const [page, setPage] = useState(1);
+    const { interviewsToDisplaySlice, range } = useTable(interviewsToDisplay, page, rowsPerPage);
 
     const handleClick = (id) => {
         
-        interviewsToDisplay.forEach((interview) => {
+        interviewsToDisplaySlice.forEach((interview) => {
             if(id === interview._id) {
                 setDetailsToDisplay(interview)
                 setDisplayDetailsPage(true)
@@ -18,10 +35,6 @@ function Interviews({interviewsToDisplay}) {
             }
         })
     }
-
-    
-
-      //console.log(scheduledInterviews)
 
     return (
         <div className='interviews'>
@@ -36,7 +49,7 @@ function Interviews({interviewsToDisplay}) {
                     </tr>
                 </thead>
                 
-                {interviewsToDisplay.map((interview) => {
+                {interviewsToDisplaySlice.map((interview) => {
                     //console.log(interview)
                     return (
                         <tr className='interviews-rows' onClick={()=>handleClick(interview._id) } key={interview._id}>
@@ -49,7 +62,10 @@ function Interviews({interviewsToDisplay}) {
                     )
                 })}
             </table>
-            {displayDetailsPage && [<InterviewDetails details={detailsToDisplay} closeDetails={()=>setDisplayDetailsPage(false)}/>, <Overlay />]}
+            <TableFooter range={range} slice={interviewsToDisplaySlice} setPage={setPage} page={page} />
+            <LoadingIndicator />
+            {/* <TablePagination /> */}
+            {displayDetailsPage && [<Overlay />,<InterviewDetails details={detailsToDisplay} closeDetails={()=>setDisplayDetailsPage(false)}/>]}
         </div>
     )
 }

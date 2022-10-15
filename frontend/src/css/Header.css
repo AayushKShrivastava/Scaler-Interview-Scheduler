@@ -8,6 +8,7 @@
     color: white;
     padding: 10px 50px;
     height: 10vh;
+    z-index: 1;
 }
 
 .header-scheduler {

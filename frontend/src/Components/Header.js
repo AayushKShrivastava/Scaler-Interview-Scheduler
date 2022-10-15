@@ -13,6 +13,7 @@ function Header() {
   
   async function handleScheduleButtonClick()
   {
+    setDisplayScheduler(true)
     var participantList = await API.get(constants.LIST_PARTICIPANTS_URL)
     console.log("Users", participantList.Users)
 
@@ -26,15 +27,14 @@ function Header() {
 
     setParticipantNames(names)
     setParticipantEmails(emails)
-    setDisplayScheduler(true)
+    
   }
 
   return (
     <div className='header'>
         <p className="header-title">Scaler Interview Scheduler</p>
         <button className='header-scheduler' onClick={handleScheduleButtonClick}>Schedule an Interview</button>
-        {displayScheduler && <SchedulerForm toggle = {()=>setDisplayScheduler(false)} participantList={participantNames} participantEmailList={participantEmails} submitType='Create'/> }
-        {displayScheduler  && <Overlay />}
+        {displayScheduler && [<Overlay />,<SchedulerForm toggle = {()=>setDisplayScheduler(false)} participantList={participantNames} participantEmailList={participantEmails} submitType='Create'/>] }
     </div>
 
     
