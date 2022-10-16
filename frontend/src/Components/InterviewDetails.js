@@ -3,11 +3,14 @@ import API from '../api/api';
 import '../css/InterviewDetails.css'
 import SchedulerForm from './SchedulerForm';
 import { constants } from '../constants/constants';
+import { FiDownload } from 'react-icons/fi'
 
 function InterviewDetails({details, closeDetails}) {
     const [editWindow, setEditWindow] = useState(false);
     const [participantEmails, setParticipantEmails] = useState([]);
+    const [alertMessage, setAlertMessage] = useState(' ')
 
+    // seeting data to be sent to update form when edit button is clicked
     async function handleEditButtonClick()
     {
         setEditWindow(true)
@@ -21,9 +24,9 @@ function InterviewDetails({details, closeDetails}) {
         });
 
         setParticipantEmails(emails)
-        //setDisplayScheduler(true)
     }
 
+    // function to cancel a scheduled meeting
     const handleCancelMeeting = async() => {
         var requestBody  = {
             meetingId: details._id,
@@ -38,6 +41,17 @@ function InterviewDetails({details, closeDetails}) {
 
         if(response.status==="SUCCESS")
             window.location.reload()
+    }
+
+
+    //sending request to download the meeting attachments uploaded
+    const handleFileDownload = async() => {
+        
+        var response = await API.get(`${constants.DOWNLOAD_FILE_URL}?meetingId=${details._id}`)
+        if(response.status !== 'SUCCESS')
+            setAlertMessage("No uploaded files found for this meeting")
+        else
+            setAlertMessage('')
     }
 
     return (
@@ -66,11 +80,19 @@ function InterviewDetails({details, closeDetails}) {
                 </ul>
             </div>
 
-            <div className='interview-edit'>
-                <button className='cancel-meeting-btn' onClick={handleCancelMeeting}>Cancel Meeting</button>
-                <button className='interview-edit-btn' onClick={handleEditButtonClick}>Edit</button>
+            <div className='alert'>{alertMessage}</div>
+            <br/>
+
+            <div className='footer-button'>
+                <button className='download-attachment' onClick={handleFileDownload}>Download attachment<FiDownload /></button>
+
+                <div className='interview-edit'>
+                    <button className='cancel-meeting-btn' onClick={handleCancelMeeting}>Cancel Meeting</button>
+                    <button className='interview-edit-btn' onClick={handleEditButtonClick}>Edit</button>
+                </div>
             </div>
 
+            {/* display interview updating form if ediit button has been clicked */}
             {editWindow && <SchedulerForm interviewDetails={details} participantEmailList={participantEmails} toggle={()=>setEditWindow(false)} submitType='Update'/>}
 
         </div>

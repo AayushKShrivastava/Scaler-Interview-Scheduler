@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+// custom hook to set the table data to be displayed on each page
+
 const calculateRange = (data, rowsPerPage) => {
   const range = [];
   const num = Math.ceil(data.length / rowsPerPage);
