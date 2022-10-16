@@ -7,7 +7,6 @@ const updateMeeting = async(req, res, next) => {
     req.ok = true;
     req.opcode = constants.opcode.UPDATE_MEETING
 
-
     var meeting_id = req.body.meetingId
     var title = req.body.title
     var date = req.body.date
@@ -20,6 +19,7 @@ const updateMeeting = async(req, res, next) => {
 
         DatabaseConnectionService.connect()
 
+        // data validation before meeting updation 
         if(meeting_id===null || meeting_id===undefined || title===null || title===undefined || date===null || date===undefined 
             || start_time===null || start_time===undefined || end_time===null || end_time===undefined || participants===null || participants===undefined)
             throw new Error(constants.INVALID_REQUEST.Code, constants.INVALID_REQUEST.Message)
@@ -39,6 +39,7 @@ const updateMeeting = async(req, res, next) => {
 
         next();
     }
+
     catch(err)
     {
         req.ok = false;

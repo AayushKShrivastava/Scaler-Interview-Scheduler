@@ -1,5 +1,6 @@
 const constants = require("../constants/constants");
 
+// sending all participants data 
 const participantsController = (req,res) => {
 
     if(req.ok)

@@ -3,6 +3,7 @@ const constants = require("../constants/constants")
 const meetingController = (req, res) => {
     if(req.ok)
     {
+        // handling get all meetings data request
         if(req.opcode == constants.opcode.GET_DETAILS)
         {
             var responseData = {
@@ -18,6 +19,9 @@ const meetingController = (req, res) => {
 
             res.status(200).json(responseData);
         }
+
+        // handling meeting creation request
+
         else if(req.opcode === constants.opcode.CREATE_MEETING)
         {
             var responseData = {
@@ -35,6 +39,8 @@ const meetingController = (req, res) => {
 
             res.status(200).json(responseData);
         }
+
+        // handling meeting updation request
         else if(req.opcode === constants.opcode.UPDATE_MEETING)
         {
             var responseData = {
@@ -52,7 +58,9 @@ const meetingController = (req, res) => {
             }
 
             res.status(200).json(responseData);
-        }   
+        } 
+        
+        // handle cancel meeting
         else if(req.opcode === constants.opcode.DELETE_MEETING)
         {
             var responseData = {
@@ -72,6 +80,8 @@ const meetingController = (req, res) => {
 
             res.status(200).json(responseData);
         }
+
+        // 
         else if(req.opcode === constants.opcode.ALL_MEETING_DETAILS)
         {
             var responseData = {
@@ -84,6 +94,8 @@ const meetingController = (req, res) => {
         }
 
     }
+
+    // handling failure case
     else
     {
         var responseData = {

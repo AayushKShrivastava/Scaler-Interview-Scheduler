@@ -21,6 +21,10 @@ var constants = {
         Code : 5050,
         Message : "An unknown server-error occured."
     },
+    FILE_NOT_FOUND: {
+        Code : 4004,
+        Message : "No uploaded files found for this meeting"
+    },
     opcode : {
         GET_DETAILS : "MEETING_DETAILS",
         CREATE_MEETING : "SETUP_MEETING",
@@ -28,12 +32,15 @@ var constants = {
         DELETE_MEETING : "CANCEL_MEETING",
         LIST_USERS : "LIST_USERS",
         LIST_AVAILABLE_SLOTS : "LIST_AVAILABLE_SLOTS",
-        ALL_MEETING_DETAILS : "FETCH_ALL_MEETING_DETAILS"
+        ALL_MEETING_DETAILS : "FETCH_ALL_MEETING_DETAILS",
+        UPLOAD : "UPLOAD_FILE",
+        DOWNLOAD : "DOWNLOAD_FILE"
     },
     message : {
         MEETING_SCHEDULED_SUCCESS : "Meeting Scheduled Successfully!",
         MEETING_UPDATED : "This event has been updated",
-        MEETING_CANCELLED : "This event has been cancelled"
+        MEETING_CANCELLED : "This event has been cancelled",
+        FILE_UPLOAD_SUCCESS : "File Uploaded Successfully"
     }
 }
 

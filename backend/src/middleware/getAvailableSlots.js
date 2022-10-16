@@ -4,6 +4,7 @@ const DatabaseConnectionService = require("../db/service/DatabaseConnectionServi
 const Error = require("../utilities/classes/Error")
 const convertToMinutes = require('../utilities/helpers/convertToMinutes')
 
+//find available time slot for scheduling new meeting
 const getAvailableSlots = async(req, res, next) => {
 
     req.ok = true

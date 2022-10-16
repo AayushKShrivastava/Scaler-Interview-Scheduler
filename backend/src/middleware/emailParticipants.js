@@ -41,22 +41,8 @@ const emailParticipants = async(req, res, next) => {
               
             }
           });
-        // emailResults = []
-        // try
-        // {
-        //     var emailInfo = await transporter.sendMail(mailOptions)
-        //     console.log(emailInfo);
-
-        //     emailResults.push({participant : constants.SUCCESS})
-        // }
-        // catch(err)
-        // {
-        //     console.log(err)
-        //     emailResults.push({participant : constants.FAILURE})
-        // } 
     });
     next();
-    //res.send("Done")
 }
 
 module.exports = emailParticipants;
