@@ -22,13 +22,11 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
 
     const [displayDetailsPage, setDisplayDetailsPage] = useState(false)
     const [detailsToDisplay, setDetailsToDisplay] = useState([]);
-
     const [page, setPage] = useState(1);
-    //find the number of interviews data to be displayed on the current page //table pagination..
     const { slice: interviewsSliceToDisplay, range } = useTable(interviewsToDisplay, page, rowsPerPage);
-
-    // function to display the selected interviews details
+    
     const handleClick = (id) => {
+        
         interviewsSliceToDisplay.forEach((interview) => {
             if(id === interview._id) {
                 setDetailsToDisplay(interview)
@@ -52,7 +50,7 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
                 </thead>
                 
                 {interviewsSliceToDisplay.map((interview) => {
-                    
+                    //console.log(interview)
                     return (
                         <tr className='interviews-rows' onClick={()=>handleClick(interview._id) } key={interview._id}>
                             <td>{interview.date}</td>
@@ -64,12 +62,9 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
                     )
                 })}
             </table>
-
-            {/* table pagination */}
             <TableFooter range={range} slice={interviewsSliceToDisplay} setPage={setPage} page={page} />
             <LoadingIndicator />
-            
-            {/*display the window with the details of the  selected row interview */}
+            {/* <TablePagination /> */}
             {displayDetailsPage && [<Overlay />,<InterviewDetails details={detailsToDisplay} closeDetails={()=>setDisplayDetailsPage(false)}/>]}
         </div>
     )

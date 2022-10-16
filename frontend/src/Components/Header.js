@@ -11,13 +11,9 @@ function Header() {
   const [participantNames, setParticipantNames] = useState([]);
   const [participantEmails, setParticipantEmails] = useState([]);
   
-
-
   async function handleScheduleButtonClick()
   {
     setDisplayScheduler(true)
-
-    //fetching all participants data to be displayed on the interview scheduling form
     var participantList = await API.get(constants.LIST_PARTICIPANTS_URL)
     console.log("Users", participantList.Users)
 

@@ -7,26 +7,6 @@ ul {
     height: 120px;
 }
 
-.download-attachment {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    width: fit-content;
-    background-color:rgb(33, 150, 243);
-    color: white;
-    border: none;
-    border-radius: 3px;
-    padding: 5px;
-    height: 30px;
-}
-
-.footer-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
 .interview-edit {
     display: flex;
     justify-content: flex-end;

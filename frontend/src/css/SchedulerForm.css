@@ -72,18 +72,6 @@
   color: red;
 }
 
-.submitfile {
-  color: rgb(97, 97, 97);
-  font-size: 14px;
-}
-
-.upload-resume {
-  margin-top: 5px;
-  cursor: pointer;
-  border-radius: 3px;
-  margin-bottom: 10px;
-}
-
 .scheduling-actions {
   display: flex;
   justify-content: flex-end;
