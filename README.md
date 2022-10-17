@@ -1,5 +1,10 @@
 # Scaler Interview Scheduler
-Scheduler application to help organizations SCHEDULE, UPDATE, CANCEL, and VIEW SCHEDULED MEETINGS, with Email notification feature
+Scheduler application to help organizations schedule meetings
+## Features
+- SCHEDULE, UPDATE, CANCEL Meetings
+- View Scheduled meetings
+- Attachments upload and Download
+- Email Notification
 
 ## Deployed Link
 https://meeting-scheduling-app.netlify.app/
