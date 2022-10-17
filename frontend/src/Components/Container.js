@@ -13,8 +13,9 @@ function Container() {
   const [interviewsToDisplay, setInterviewsToDisplay] = useState(scheduledInterviews);
   const [date, setDate] = useState('');
 
+
+  // searching interview details based on the search query 
   const handleSearch = (newSearchQuery) => {
-    
     var interviewDetails = []
     scheduledInterviews.map((interview) => {
       if(interview.title.toLowerCase().includes(newSearchQuery)){
@@ -24,6 +25,7 @@ function Container() {
     setInterviewsToDisplay(interviewDetails)
   }
 
+  // Handling search interviews by date 
   useEffect(()=> {
     console.log(date)
     if(date === null || date ===  '' || date === undefined) {
@@ -40,11 +42,10 @@ function Container() {
     setInterviewsToDisplay(interviewDetails)
   }, [date])
 
- 
+ //Fetching all scheduled interviews data from the database
   useEffect(()=>{
     async function fetchData() {
       var interviewData = await API.get(constants.MEETING_DETAILS_URL)
-      //console.log(interviewData.all_meeting_details)
       console.log(interviewData.all_meeting_details)
       setScheduledInterviews(interviewData.all_meeting_details)
       setInterviewsToDisplay(interviewData.all_meeting_details)
