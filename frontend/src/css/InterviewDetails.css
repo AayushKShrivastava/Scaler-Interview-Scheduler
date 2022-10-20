@@ -4,7 +4,8 @@
 ul {
     margin-top: 30px;
     overflow-y: scroll;
-    height: 120px;
+    height: fit-content;
+    max-height: 120px;
 }
 
 .download-attachment {

@@ -72,7 +72,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
     {
       // data validation
       if(title.trim()==='' || selectdPartcipants.length<2 || availableTimeSlots.length===0 || startTime<minTime 
-        || endTime>maxTime || startTime>endTime || startTime==='' || endTime==='') {
+        || endTime>maxTime || startTime>=endTime || startTime==='' || endTime==='') {
           if(selectdPartcipants.length<2)
             setAlertMessage("Select atleast two participants")
           else
@@ -242,7 +242,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
                       hourPlaceholder="hh" 
                       minutePlaceholder="mm"
                       locale='hu-HU' 
-                      minTime={minTime} maxTime={maxTime}
+                      minTime={startTime} maxTime={maxTime}
                   />
               </div>
             </div>

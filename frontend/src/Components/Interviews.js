@@ -38,6 +38,8 @@ function Interviews({interviewsToDisplay, rowsPerPage}) {
         })
     }
 
+    
+
     return (
         <div className='interviews'>
             <table className='interviews-table'>
