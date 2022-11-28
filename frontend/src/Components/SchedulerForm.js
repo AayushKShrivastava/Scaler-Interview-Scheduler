@@ -66,13 +66,15 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
   }
 
   const handleSubmit = async() => {
-
     //if a new meeting is to created
     if(submitType === "Create")
+    
     {
+      
       // data validation
       if(title.trim()==='' || selectdPartcipants.length<2 || availableTimeSlots.length===0 || startTime<minTime 
-        || endTime>maxTime || startTime>=endTime || startTime==='' || endTime==='') {
+        || endTime>maxTime || startTime>endTime || startTime==='' || endTime==='') {
+          
           if(selectdPartcipants.length<2)
             setAlertMessage("Select atleast two participants")
           else
@@ -107,6 +109,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
           else
             window.location.reload()
         }
+        handleClose();
       }
     }
     //To update an already created meeting
@@ -149,12 +152,13 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
             else
               window.location.reload()
           }
+          handleClose();
       }
       
     }
     console.log(response)
     //clear the form after submission
-    handleClose();
+    
   }
 
   const updateParticipantsList = (selectedList, selectedItem) => {
@@ -242,7 +246,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
                       hourPlaceholder="hh" 
                       minutePlaceholder="mm"
                       locale='hu-HU' 
-                      minTime={startTime} maxTime={maxTime}
+                      minTime={minTime} maxTime={maxTime}
                   />
               </div>
             </div>
