@@ -36,7 +36,7 @@ function Header() {
 
   return (
     <div className='header'>
-        <p className="header-title">Interview Scheduler</p>
+        <p className="header-title">Scaler Interview Scheduler</p>
         <button className='header-scheduler' onClick={handleScheduleButtonClick}>Schedule an Interview</button>
         {displayScheduler && [<Overlay />,<SchedulerForm toggle = {()=>setDisplayScheduler(false)} participantList={participantNames} participantEmailList={participantEmails} submitType='Create'/>] }
     </div>
