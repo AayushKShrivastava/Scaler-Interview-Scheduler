@@ -1,7 +1,7 @@
 .detail-sections {
     margin-top: 30px;
 }
-ul {
+.interviewDetailsParticipants {
     margin-top: 30px;
     overflow-y: scroll;
     height: fit-content;

@@ -4,6 +4,7 @@ import { constants } from '../constants/constants';
 import '../css/Header.css'
 import Overlay from './Overlay';
 import SchedulerForm from './SchedulerForm';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
 
@@ -11,7 +12,7 @@ function Header() {
   const [participantNames, setParticipantNames] = useState([]);
   const [participantEmails, setParticipantEmails] = useState([]);
   
-
+    const navigate = useNavigate()
 
   async function handleScheduleButtonClick()
   {
@@ -36,8 +37,11 @@ function Header() {
 
   return (
     <div className='header'>
-        <p className="header-title">Scaler Interview Scheduler</p>
-        <button className='header-scheduler' onClick={handleScheduleButtonClick}>Schedule an Interview</button>
+        <p className="header-title">Interview Scheduler</p>
+        <div className='header-actions'>
+            <button className='header-button' onClick={()=>navigate('/sla')}>SLA</button>
+            <button className='header-button' onClick={handleScheduleButtonClick}>Schedule an Interview</button>
+        </div>
         {displayScheduler && [<Overlay />,<SchedulerForm toggle = {()=>setDisplayScheduler(false)} participantList={participantNames} participantEmailList={participantEmails} submitType='Create'/>] }
     </div>
 

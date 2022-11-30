@@ -6,10 +6,13 @@ const fileHandler = require('./routes/file-routes')
 const meeting = require('./routes/meeting-routes')
 const participants = require('./routes/participant-routes')
 const formData = require('express-form-data')
+const statusMonitor = require('express-status-monitor')
 
 dotenv.config()
 
 const app = express()
+
+app.use(statusMonitor())
 
 app.use(cors())
 

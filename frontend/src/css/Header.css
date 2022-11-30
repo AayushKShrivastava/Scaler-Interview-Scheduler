@@ -11,7 +11,12 @@
     z-index: 1;
 }
 
-.header-scheduler {
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.header-button {
     height: 30px;
     border-radius: 4px;
     background-color: rgb(33, 150, 243);

@@ -167,7 +167,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
 
 
   // function to populate the available time slot drop down list
-  const handleMouseEnter = async() => {
+  const findAvailableSlots = async() => {
 
     var requestBody = {
       date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
@@ -209,7 +209,7 @@ function SchedulerForm({interviewDetails, toggle, participantEmailList, submitTy
                 <DatePicker onChange={setDate} value={date} format="dd/MM/yyyy" minDate={new Date()}/>
             </div>
 
-            <div onMouseEnter={()=>handleMouseEnter()} onMouseLeave={()=>console.log("Focus Lost")}>
+            <div onClick={()=>findAvailableSlots()} onMouseLeave={()=>console.log("Focus Lost")}>
               <Multiselect
                   isObject={false}
                   onKeyPressFn={function noRefCheck(){}}

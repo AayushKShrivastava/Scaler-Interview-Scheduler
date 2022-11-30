@@ -75,7 +75,7 @@ function InterviewDetails({details, closeDetails}) {
             <div className='detail-sections'>
                 <strong className='details-label'>Participants:  </strong>
                 <label>{details.participants.length}</label>
-                <ul>
+                <ul className='interviewDetailsParticipants'>
                     {details.participants.map((participant)=> <li>{participant}</li>)}
                 </ul>
             </div>
