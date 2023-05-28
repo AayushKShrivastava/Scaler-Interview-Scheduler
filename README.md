@@ -6,9 +6,6 @@ Scheduler application to help organizations schedule meetings
 - Attachments upload and Download
 - Email Notification
 
-## Deployed Link
-https://meeting-scheduling-app.netlify.app/
-
 ## Local Setup Instructions
 - Open your terminal and then type: $ git clone git@github.com:AayushKShrivastava/Scaler-Interview-Scheduler.git to clones the repository
 - Open the cloned repository in vscode.
